@@ -43,7 +43,7 @@ public class AluguelVeiculo {
     public void setVeiculo(Veiculo veiculo) {
         this.veiculo = veiculo;
     }
-
+  
     public Fatura getFatura() {
         return fatura;
     }

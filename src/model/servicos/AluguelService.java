@@ -8,9 +8,9 @@ public class AluguelService {
     private Double precoPorHora;
     private Double precoPorDia;
     
-    private TaxaImpostoBrasilService taxaService;
+    private TaxaService taxaService;
 
-    public AluguelService(Double precoPorHora, Double precoPorDia, TaxaImpostoBrasilService taxaService) {
+    public AluguelService(Double precoPorHora, Double precoPorDia, TaxaService taxaService) {
         this.precoPorHora = precoPorHora;
         this.precoPorDia = precoPorDia;
         this.taxaService = taxaService;
@@ -27,12 +27,12 @@ public class AluguelService {
         double pagamentoBasico;
         if(horas <= 12.0){
             //usa função da classe Math para arredondar as horas
-            pagamentoBasico = Math.ceil(horas) * precoPorDia;
+            pagamentoBasico = Math.ceil(horas) * precoPorHora;
         } else {
-            pagamentoBasico = Math.ceil(horas /24) * precoPorHora;
+            pagamentoBasico = Math.ceil(horas /24) * precoPorDia;
         }
         
-        double taxa = taxaService.calcularTaxa(pagamentoBasico);
+        double taxa = taxaService.taxa(pagamentoBasico);
         aluguelVeiculo.setFatura(new Fatura(pagamentoBasico, taxa));
     }
 }

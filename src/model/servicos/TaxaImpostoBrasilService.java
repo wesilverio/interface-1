@@ -1,9 +1,10 @@
 
 package model.servicos;
 
-public class TaxaImpostoBrasilService {
-    
-    public double calcularTaxa(double quantia){
+public class TaxaImpostoBrasilService implements TaxaService{
+
+    @Override
+    public double taxa(double quantia) {
         if (quantia <= 100){
             return quantia * 0.2;
         } else {
